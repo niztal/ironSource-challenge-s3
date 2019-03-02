@@ -1,13 +1,12 @@
-import getFile from '../../repository/getFile';
+import getFileByName from '../../repository/getFileByName';
+import getFileById from '../../repository/getFileById';
 
-const validateFile = async (userId, fileName, access_token) => {
-    let file;
-    file = await getFile(userId, fileName);
+const validateFile = (file, access_token) => {
     if (!file) {
         throw {status: 404, message: "file not found"};
     }
-    if (file.isPrivate && file.access_token !== access_token) {
-        throw {status: 403, message: "file is private, please send valid access_token in order to download it"};
+    if (file.isPrivate && file.accessToken !== access_token) {
+        throw {status: 403, message: "file is private!"};
     }
 }
 

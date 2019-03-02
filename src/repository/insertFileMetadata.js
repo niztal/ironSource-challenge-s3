@@ -11,7 +11,7 @@ const insertFileMetadata = (userId, file) => {
         accessToken: file.accessToken,
         createdAt: Date.now()
     };
-    db.collection('metadata').insertOne(fileMetaData);
+    db.collection(userId).insertOne(fileMetaData);
 }
 
 export default insertFileMetadata;
