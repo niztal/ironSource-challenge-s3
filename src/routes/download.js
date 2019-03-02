@@ -7,14 +7,14 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
     const {userId} = req;
-    const {fileName, metadata} = req.query;
+    const {fileName, access_token, metadata} = req.query;
 
     if(!fileName) {
         res.status(400).send({message: "missing file name"});
     } else {
         try{
             const file = await getFileByName(userId, fileName);
-            validateFile(file);
+            validateFile(file, access_token);
             if (metadata) {
                 res.send(getFileMetaData(file));
             } else {

@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
             return {
                 "id": file.id,
                 "name": file.name,
-                "accessToken": file.accessToken
+                "access_token": file.access_token
             } 
         });
         res.status(201).send(response);

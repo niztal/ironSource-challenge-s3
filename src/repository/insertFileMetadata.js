@@ -8,7 +8,7 @@ const insertFileMetadata = (userId, file) => {
         name: file.name,
         size: file.size,
         isPrivate: file.isPrivate,
-        accessToken: file.accessToken,
+        access_token: file.access_token,
         createdAt: Date.now()
     };
     db.collection(userId).insertOne(fileMetaData);
