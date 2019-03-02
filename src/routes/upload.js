@@ -29,7 +29,8 @@ router.post('/', (req, res) => {
         const response = Object.values(files).map((file) => {
             return {
                 "id": file.id,
-                "name": file.name
+                "name": file.name,
+                "accessToken": file.accessToken
             } 
         });
         res.status(201).send(response);
