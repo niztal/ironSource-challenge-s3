@@ -2,7 +2,6 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
-import uploadFiles from '../services/upload/uploadFiles';
 import uploadPrivateFiles from '../services/upload/uploadPrivateFiles';
 import uploadPublicFiles from '../services/upload/uploadPublicFiles';
 import indexFilesMetadata from '../services/upload/indexFilesMetadata';

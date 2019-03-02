@@ -1,7 +1,7 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import routes from './routes';
-import authMiddleware from './middlewares/authMiddleware';
+import {authMiddleware, errorHandlingMiddleware} from './middlewares';
 import mongodb from 'mongodb';
 
 const initDb = require("./utils/db").initDb;
@@ -13,6 +13,7 @@ const mongoUrl = 'mongodb://localhost:27017';
 app.use(authMiddleware);
 app.use(fileUpload());
 app.use('/', routes);
+app.use(errorHandlingMiddleware);
 
 initDb((err) => {
     app.listen(5000, () => {
