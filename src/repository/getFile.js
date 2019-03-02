@@ -6,4 +6,12 @@ const getFileById = async (userId, fileId) => {
     return await db.collection(userId).findOne({_id: fileId});
 }
 
-export default getFileById;
+const getFileByName = async (userId, fileName) => {
+    const db = getDb();
+    return await db.collection(userId).findOne({name: fileName});
+}
+
+export {
+    getFileById,
+    getFileByName
+};

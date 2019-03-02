@@ -5,4 +5,6 @@ const updateFileByName = async (userId, fileName, newValues) => {
     await db.collection(userId).updateOne({name: fileName}, newValues);
 }
 
-export default updateFileByName;
+export {
+    updateFileByName
+};

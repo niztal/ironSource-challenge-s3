@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
-import getFileByName from '../repository/getFileByName';
-import getFileById from '../repository/getFileById';
+import {getFileByName, getFileById} from '../repository/getFile';
 import validateFile from '../services/download/validateFile';
 
 const router = express.Router();

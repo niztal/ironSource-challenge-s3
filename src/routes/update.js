@@ -1,8 +1,7 @@
 import express from 'express';
-import getFileByName from '../repository/getFileByName';
-import getFileById from '../repository/getFileById';
+import {getFileByName, getFileById} from '../repository/getFileB';
 import validateFile from '../services/download/validateFile';
-import updateFileByName from '../repository/updateFileByName';
+import {updateFileByName} from '../repository/updateFile';
 import generate from 'password-generator';
 
 const router = express.Router();
@@ -31,6 +30,6 @@ router.post('/', async (req, res, next) => {
             next(err);
         }
     }
-})
+});
 
 export default router;
