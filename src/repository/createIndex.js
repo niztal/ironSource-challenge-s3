@@ -1,8 +1,8 @@
 const getDb = require("../utils/db").getDb;
 
-const createIndex = (userId, fieldToIndex) => {
+const createIndex = async (userId, fieldToIndex) => {
     const db = getDb();
-    db.collection(userId).ensureIndex([["name", 1]]);
+    await db.collection(userId).ensureIndex([[fieldToIndex, 1]]);
 }
 
 export default createIndex;

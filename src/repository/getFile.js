@@ -1,4 +1,3 @@
-import fs from 'fs';
 const getDb = require("../utils/db").getDb;
 
 const getFileById = async (userId, fileId) => {

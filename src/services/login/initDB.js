@@ -1,7 +1,7 @@
 import createIndex from '../../repository/createIndex';
 
-const initDB = (userId) => {
-    createIndex(userId);
+const initDB = async (userId) => {
+    await createIndex(userId, "name");
 }
 
 export default initDB;
