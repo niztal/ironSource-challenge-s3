@@ -1,6 +1,7 @@
 import express from 'express';
 import {getFileByName, getFileById} from '../repository/getFile';
-import validateFile from '../services/download/validateFile';
+import validateFileAccessability from '../services/validate/validateFileAccessability';
+import validateFileNotDeleted from '../services/validate/validateFileNotDeleted';
 import {updateFileByName, updateFileById} from '../repository/updateFile';
 
 const router = express.Router();
@@ -14,10 +15,8 @@ router.delete('/', async (req, res, next) => {
     } else {
         try{
             const file = await getFileByName(userId, fileName);
-            validateFile(file, access_token);
-            if (file.isDeleted) {
-                throw {status: 404, message: "file deleted"}
-            }
+            validateFileAccessability(file, access_token);
+            validateFileNotDeleted(file);
             var newValues = { $set: { isDeleted: true, deletedAt: Date.now() } };
             await updateFileByName(userId, fileName, newValues);
             res.status(202).send({message: "file deleted successfully"});
@@ -37,10 +36,8 @@ router.delete('/:fileId', async (req, res, next) => {
     } else {
         try{
             const file = await getFileById(userId, fileId);
-            validateFile(file, access_token);
-            if (file.isDeleted) {
-                throw {status: 404, message: "file deleted"}
-            }
+            validateFileAccessability(file, access_token);
+            validateFileNotDeleted(file);
             var newValues = { $set: { isDeleted: true, deletedAt: Date.now() } };
             await updateFileById(userId, fileId, newValues);
             res.status(202).send({message: "file deleted successfully"});

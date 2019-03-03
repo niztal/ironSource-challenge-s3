@@ -1,6 +1,6 @@
 import express from 'express';
 import {getFileByName, getFileById} from '../repository/getFile';
-import validateFile from '../services/download/validateFile';
+import validateFileAccessability from '../services/validate/validateFileAccessability';
 import {updateFileByName, updateFileById} from '../repository/updateFile';
 import generate from 'password-generator';
 
@@ -15,7 +15,7 @@ router.post('/', async (req, res, next) => {
     } else {
         try{
             const file = await getFileByName(userId, fileName);
-            validateFile(file, access_token);
+            validateFileAccessability(file, access_token);
             var newValues = { $set: { isPrivate: !file.isPrivate, updatedAt: Date.now() } };
             if (!file.isPrivate) {
                 newValues.$set.access_token = generate(12, false, /\w/);
@@ -45,7 +45,7 @@ router.post('/:fileId', async (req, res, next) => {
     } else {
         try{
             const file = await getFileById(userId, fileId);
-            validateFile(file, access_token);
+            validateFileAccessability(file, access_token);
             var newValues = { $set: { isPrivate: !file.isPrivate, updatedAt: Date.now() } };
             if (!file.isPrivate) {
                 newValues.$set.access_token = generate(12, false, /\w/);

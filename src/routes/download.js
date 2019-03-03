@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import {getFileByName, getFileById} from '../repository/getFile';
-import validateFile from '../services/download/validateFile';
+import validateFileAccessability from '../services/validate/validateFileAccessability';
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
     } else {
         try{
             const file = await getFileByName(userId, fileName);
-            validateFile(file, access_token);
+            validateFileAccessability(file, access_token);
             if (metadata) {
                 res.send(getFileMetaData(file));
             } else {
@@ -39,7 +39,7 @@ router.get('/:fileId', async (req, res, next) => {
     } else {
         try{
             const file = await getFileById(userId, fileId);
-            validateFile(file, access_token);
+            validateFileAccessability(file, access_token);
             if (metadata) {
                 res.send(getFileMetaData(file));
             } else {

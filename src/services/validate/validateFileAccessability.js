@@ -1,6 +1,4 @@
-import {getFileByName, getFileById} from '../../repository/getFile';
-
-const validateFile = (file, access_token) => {
+const validateFileAccessability = (file, access_token) => {
     if (!file) {
         throw {status: 404, message: "file not found"};
     }
@@ -9,4 +7,4 @@ const validateFile = (file, access_token) => {
     }
 }
 
-export default validateFile;
+export default validateFileAccessability;
