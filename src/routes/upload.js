@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
             mkdirp(userStorageFolder);
         }
         let uploadedFiles;
-        if (isPrivate) {
+        if (isPrivate === 'true') {
             uploadPrivateFiles(userStorageFolder, files);
         } else {
             uploadPublicFiles(userStorageFolder, files);

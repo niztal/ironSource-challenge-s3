@@ -3,6 +3,7 @@ import fileUpload from 'express-fileupload';
 import routes from './routes';
 import bodyParser from 'body-parser';
 import {authMiddleware, errorHandlingMiddleware} from './middlewares';
+import cors from 'cors';
 import mongodb from 'mongodb';
 
 const initDb = require("./utils/db").initDb;
@@ -12,6 +13,9 @@ const MongoClient = mongodb.MongoClient;
 const mongoUrl = 'mongodb://localhost:27017';
 
 app.use(authMiddleware);
+app.use(cors({
+    exposedHeaders: ['Content-Disposition']
+}))
 app.use(fileUpload());
 app.use(bodyParser.json());
 app.use('/', routes);

@@ -1,7 +1,7 @@
 import jwt_decode from 'jwt-decode';
 
 export default (req, res, next) => {
-    if (req.url === '/login') {
+    if (req.url === '/login' || req.method === 'OPTIONS') {
         next();
     } else {
         const authorizationHeader = req.headers.authorization && req.headers.authorization.startsWith('Bearer ');
