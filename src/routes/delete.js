@@ -19,7 +19,7 @@ router.delete('/', async (req, res, next) => {
             validateFileNotDeleted(file);
             var newValues = { $set: { isDeleted: true, deletedAt: Date.now() } };
             await updateFileByName(userId, fileName, newValues);
-            res.status(202).send({message: "file deleted successfully"});
+            res.status(200).send({message: "file deleted successfully"});
         } catch(err) {
             next(err);
         }
